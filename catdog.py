@@ -1,6 +1,6 @@
 import os
-from tensorflow import keras
-from tensorflow.keras.preprocessing import image
+import tensorflow as tf
+from tensorflow.keras.utils import img_to_array
 import numpy as np
 
 #load the prediction model
@@ -13,7 +13,7 @@ def load_model(model_path):
     
     # load the model
     try:
-        model = keras.models.load_model(model_path)
+        model = tf.keras.models.load_model(model_path)
         return model
     except Exception as e:
         raise RuntimeError(f"Failed to load model: {e}")
@@ -22,7 +22,7 @@ def load_model(model_path):
 #image is taken from streamlit file uploader, only usable in a single session. It is formatted here for use in the model.
 def prepare_image_data(image_loaded):
     # Load the image and resize it
-    img_array = image.img_to_array(image_loaded)
+    img_array = img_to_array(image_loaded)
 
     # Normalize pixel values to [0, 1]
     img_array /= 255.0

@@ -32,7 +32,6 @@ if uploaded_file is not None:
     resized_image = image_uploaded.resize((image_resize, image_resize)) #model expects 128*128 images
     st.image(image_uploaded, caption=uploaded_file.name)
 
-
 if pressed:
     try:
         #prepare the uploaded image
